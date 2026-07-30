@@ -117,6 +117,7 @@ class MessageHandler {
         sku: parsed.sku,
         nomor: parsed.nomor,
         refId: result.data?.refId || 'UNKNOWN',
+        price: result.data?.details?.price || 0,
         details: result.data?.details || {},
       };
 

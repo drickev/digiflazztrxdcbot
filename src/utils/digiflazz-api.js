@@ -130,8 +130,7 @@ class DigiflazzAPI {
         message: message || 'Transaksi sedang diproses',
         data: {
           refId: refId,
-          idTujuan: idTujuan,
-          transactionId: data.id || data.no_ref || refId,
+          transactionId: data.sn || data.id || refId,
           details: data,
         },
       };

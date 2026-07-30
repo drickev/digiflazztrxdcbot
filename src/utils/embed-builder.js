@@ -14,10 +14,10 @@ class EmbedMessageBuilder {
       .setDescription('Transaksi Anda berhasil diproses oleh Digiflazz')
       .addFields(
         { name: '📦 SKU', value: `\`${data.sku}\``, inline: true },
-        { name: '📱 Nomor Tujuan', value: `\`${data.nomor}\``, inline: true },
-        { name: '👤 ID Tujuan', value: `\`${data.idTujuan}\``, inline: true },
+        { name: '📱 Nomor', value: `\`${data.nomor}\``, inline: true },
         { name: '🆔 Ref ID', value: `\`${data.refId}\``, inline: true },
         { name: '⏰ Waktu', value: `<t:${Math.floor(Date.now() / 1000)}:R>`, inline: true },
+        { name: '💰 Price', value: `\`Rp ${data.price || 0}\``, inline: true },
         { name: '🔗 Status', value: 'SUKSES ✅', inline: true }
       )
       .setFooter({ text: 'Digiflazz Discord Bot v1.0' })
@@ -68,10 +68,10 @@ class EmbedMessageBuilder {
       .setDescription('Transaksi Anda sedang diproses oleh Digiflazz. Mohon tunggu...')
       .addFields(
         { name: '📦 SKU', value: `\`${data.sku}\``, inline: true },
-        { name: '📱 Nomor Tujuan', value: `\`${data.nomor}\``, inline: true },
-        { name: '👤 ID Tujuan', value: `\`${data.idTujuan}\``, inline: true },
+        { name: '📱 Nomor', value: `\`${data.nomor}\``, inline: true },
         { name: '🆔 Ref ID', value: `\`${data.refId}\``, inline: true },
         { name: '⏰ Waktu', value: `<t:${Math.floor(Date.now() / 1000)}:R>`, inline: true },
+        { name: '💰 Price', value: `\`Rp ${data.price || 0}\``, inline: true },
         { name: '🔗 Status', value: 'PENDING ⏳', inline: true }
       )
       .addFields({
@@ -94,14 +94,14 @@ class EmbedMessageBuilder {
       .setDescription(`${errorMessage}`)
       .addFields({
         name: '📝 Format Benar:',
-        value: '```\nSKU.nomor/idtujuan\n```',
+        value: '```\nSKU.nomor\n```',
       })
       .addFields({
         name: '📌 Contoh:',
         value: `
-\`AXIS100.081234567890/tujuan_user\`
-\`TELKOMSEL50.089876543210/nama_game\`
-\`PLN50000.123456789012/username\`
+\`AXIS100.081234567890\`
+\`TELKOMSEL50.089876543210\`
+\`PLN50000.123456789012\`
         `,
       })
       .setFooter({ text: 'Pastikan format sesuai sebelum mengirim' })
@@ -121,21 +121,21 @@ class EmbedMessageBuilder {
       .addFields(
         {
           name: '🔧 Format Transaksi',
-          value: '```\nSKU.nomor/idtujuan\n```',
+          value: '```\nSKU.nomor\n```',
         },
         {
           name: '📱 Contoh Pulsa/Data',
-          value: '`AXIS100.081234567890/user` - Pulsa AXIS 100rb ke 081234567890',
+          value: '`AXIS100.081234567890` - Pulsa AXIS 100rb ke 081234567890',
           inline: false,
         },
         {
           name: '⚡ Contoh PLN',
-          value: '`PLN100000.123456789012/pembayaran` - Token PLN 100rb',
+          value: '`PLN100000.123456789012` - Token PLN 100rb',
           inline: false,
         },
         {
           name: '🎮 Contoh Game Voucher',
-          value: '`CODM5000.081234567890/nickname` - CODM 5000 CP',
+          value: '`CODM5000.081234567890` - CODM 5000 CP',
           inline: false,
         },
         {
