@@ -1,0 +1,180 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║         BOT API FIX - RESTART INSTRUCTIONS                       ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+🔧 WHAT WAS FIXED
+═══════════════════════════════════════════════════════════════════
+
+Error 404 API telah diperbaiki. Masalah:
+  ❌ Endpoint salah (/transaksi → /transaction)
+  ❌ Balance endpoint salah (/saldo → /balance)
+  ❌ Price endpoint salah (GET → POST)
+
+Sekarang semua endpoint sudah sesuai dokumentasi Digiflazz resmi!
+
+⚡ QUICK RESTART (3 STEPS)
+═══════════════════════════════════════════════════════════════════
+
+1. STOP BOT
+   Tekan: Ctrl + C (di terminal tempat bot berjalan)
+   
+2. RESTART BOT
+   Jalankan: npm start
+   
+3. TEST
+   Di Discord: mlcek5.47852212078/username_test
+   Bot should merespon dengan embed (hijau/merah/orange)
+
+✅ VERIFICATION CHECKLIST
+═══════════════════════════════════════════════════════════════════
+
+After restart, check:
+
+□ Bot starts without errors
+  → Look for error messages in terminal
+  → Should show: ✅ Connected to Discord!
+
+□ Bot appears online in Discord
+  → Check Discord server member list
+  → Bot status should show "Online" (not offline)
+
+□ Commands work
+  → Send: !ping
+  → Bot should reply with pong
+
+□ Test transaction
+  → Send: mlcek5.47852212078/testuser
+  → Bot should reply with embed
+
+□ Check console logs
+  → Should show: [Digiflazz] Mengirim request...
+  → Should NOT show: 404 error
+
+📊 EXPECTED OUTPUT
+═══════════════════════════════════════════════════════════════════
+
+Correct console output should look like:
+
+[Message] User: mlcek5.47852212078/testuser
+[Transaction] Mengirim ke Digiflazz API...
+[Digiflazz] Memulai transaksi: mlcek5 ke 47852212078
+[Digiflazz] Mengirim request dengan ref_id: BOT1785327645384...
+[Digiflazz] Response: {status: "00", message: "Success", ...}
+[Transaction] Result: {success: true, status: "SUKSES", ...}
+
+❌ WRONG OUTPUT (STILL ERROR)
+═══════════════════════════════════════════════════════════════════
+
+If you still see:
+
+[Digiflazz] Error: Request failed with status code 404
+
+→ Problem: IP belum ter-whitelist
+→ Solution: Add IP to Digiflazz dashboard:
+   1. Go to https://www.digiflazz.com/
+   2. Settings → IP Whitelist
+   3. Add your server IP
+   4. Save & wait 5-10 minutes
+   5. Restart bot: npm start
+
+🔧 MANUAL COMMANDS
+═══════════════════════════════════════════════════════════════════
+
+Stop bot:
+  Ctrl + C
+
+Start bot:
+  npm start
+
+Start bot with logs:
+  npm start (automatically shows logs)
+
+Kill stuck process:
+  pkill -f "node src/index.js"
+
+Check if bot running:
+  ps aux | grep node
+
+📝 WHAT CHANGED IN CODE
+═══════════════════════════════════════════════════════════════════
+
+File: src/utils/digiflazz-api.js
+
+Change 1: Transaction endpoint
+  Before: this.client.post('/transaksi', payload)
+  After:  this.client.post('/transaction', payload)
+
+Change 2: Balance endpoint
+  Before: this.client.post('/saldo', payload)
+  After:  this.client.post('/balance', payload)
+
+Change 3: Price endpoint
+  Before: this.client.get('/price-list', {params: ...})
+  After:  this.client.post('/pricelist', payload)
+
+📚 NEW DOCUMENTATION
+═══════════════════════════════════════════════════════════════════
+
+Check these files for more info:
+
+✅ API_FIX_SUMMARY.md
+   → What was fixed & why
+
+✅ DIGIFLAZZ_API_GUIDE.md
+   → Complete API reference guide
+   → Troubleshooting
+   → Testing with curl/Postman
+
+✅ README.md
+   → General bot documentation
+
+🎯 NEXT STEPS
+═══════════════════════════════════════════════════════════════════
+
+1. Restart bot: npm start
+
+2. Wait for: ✅ Connected to Discord!
+
+3. Test in Discord:
+   Send: !ping
+   Send: mlcek5.47852212078/username
+
+4. If works → Great! 🎉
+   If error → Read DIGIFLAZZ_API_GUIDE.md troubleshooting
+
+5. If still stuck → Check:
+   ✓ IP whitelisted
+   ✓ Credentials in .env correct
+   ✓ Internet connection
+   ✓ Digiflazz API status
+
+💡 TIPS
+═══════════════════════════════════════════════════════════════════
+
+• Always use format: SKU.nomor/idtujuan
+  Example: mlcek5.47852212078/namauser
+
+• Check balance first: !balance
+  Make sure you have enough saldo
+
+• Monitor console output: npm start
+  Logs will help identify issues
+
+• Keep .env safe
+  Don't share with anyone
+
+• Restart after any code changes
+  Stop (Ctrl+C) then npm start
+
+═══════════════════════════════════════════════════════════════════
+
+Questions? Read:
+→ API_FIX_SUMMARY.md
+→ DIGIFLAZZ_API_GUIDE.md
+→ README.md
+
+Ready? Let's restart! 🚀
+
+npm start

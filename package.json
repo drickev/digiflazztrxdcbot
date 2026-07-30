@@ -1,0 +1,27 @@
+{
+  "name": "digiflazz-discord-bot",
+  "version": "1.0.0",
+  "description": "Discord bot untuk transaksi Digiflazz",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "digiflazz",
+    "transaction"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.14.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
